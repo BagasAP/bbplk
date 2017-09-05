@@ -6,7 +6,7 @@
 			<div class="col-md-12">
 					 <div class="panel panel-primary">
             <header class="panel-heading">
-                <b>Tambah/Edit Kejuruan</b>
+                <b>Tambah Kejuruan</b>
                   <div class="panel-title pull-right">
                     <a href="{{URL::previous()}}">Kembali</a></div>
                 </header>

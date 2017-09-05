@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TbMSubKejuruan;
 use App\TbMKejuruan;
+use Session;
 class SubKejuruanController extends Controller
 {
     /**
@@ -48,6 +49,10 @@ class SubKejuruanController extends Controller
         $subkejuruan->nama_sub_kejuruan = $request->nama_sub_kejuruan;
         $subkejuruan->keterangan = $request->keterangan;
         $subkejuruan->save();
+        Session::flash("flash_notification",[
+            "level"=>"success",
+            "message"=>"Berhasil Menyimpan Data Sub Kejuruan"
+            ]);
         return redirect()->route('subkejuruan.index');
     }
 
@@ -91,6 +96,10 @@ class SubKejuruanController extends Controller
         $subkejuruan->nama_sub_kejuruan = $request->nama_sub_kejuruan;
         $subkejuruan->keterangan = $request->keterangan;
         $subkejuruan->save();
+        Session::flash("flash_notification",[
+            "level"=>"warning",
+            "message"=>"Berhasil Merubah Data Sub Kejuruan"
+            ]);
         return redirect()->route('subkejuruan.index');
     }
 
@@ -104,6 +113,17 @@ class SubKejuruanController extends Controller
     {
         //
         TbMSubKejuruan::destroy($id);
+        Session::flash("flash_notification",[
+            "level"=>"danger",
+            "message"=>"Berhasil Menghapus Data Sub Kejuruan"
+            ]);
         return redirect()->route('subkejuruan.index');
+    }
+
+        public function search(Request $request)
+    {
+        $caris = $request->get('search');
+        $subkejuruan = TbMSubKejuruan::where('kd_sub_kejuruan','LIKE','%'.$caris.'%')->paginate(10);
+        return view('subkejuruan.index', compact('subkejuruan'));
     }
 }

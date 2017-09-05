@@ -14,23 +14,30 @@
                     <form action="" method="post" >
                     {{ csrf_field() }}
                       <div class="form-group">
-                          <label class="col-sm-2 control-label">Kode</label>
-                              <div class="col-sm-3">
-                                  <input type="text" class="form-control" required="" name="kd_kejuruan">
-                              </div>
-
-                          <label class="col-sm-2 control-label">Nama</label>
+                          <label class="col-sm-2 control-label">Nama :</label>
                               <div class="col-sm-3">
                                   <select name="nama_kejuruan" class="form-control">
-                              @foreach($kejuruan as $data)
-                                <option value="{{$data->id}}">{{$data->nama_kejuruan}}</option>
+                              @foreach($subkejuruan as $data)
+                                <option value="{{$data->id}}">{{$data->nama_sub_kejuruan}}</option>
                               @endforeach
                               </select>
                               </div>
-              
+                            </form>
 
-                      <td>
-                      <a class="btn btn-primary" href="">Cari</a>        </div>
+                              <div class="col-md-4">
+                                <label class="col-sm-2 control-label">Kode </label> 
+                                  {!! Form::open(['method'=>'GET','url'=>'caris','role'=>'search']) !!}
+                                  <div class="input-group custom-search-form">
+                                  <input type="text" class="form-control" name="search" placeholder="search">
+                                    <span class="input-group-btn">
+                                        <span class="input-group-btn">
+                                        <button class="btn btn-success" type="submit"><i class="fa fa-search"></i> Cari</button>
+                            </span>
+                          </span>
+                        </div>
+                        {!! Form::close() !!}
+                      </div>
+                      </div>
                       <br>
                       <br>
 
@@ -41,7 +48,7 @@
                       <td>
                       <a class="btn btn-danger" href="">Delete</a>
                       </td>
-    </form>
+
           <br>
           <table class="table">
         <thead>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TbMKejuruan;
+use Session;
 class KejuruanController extends Controller
 {
     /**
@@ -44,6 +45,10 @@ class KejuruanController extends Controller
         $kejuruan->nama_kejuruan = $request->nama_kejuruan;
         $kejuruan->keterangan = $request->keterangan;
         $kejuruan->save();
+        Session::flash("flash_notification",[
+            "level"=>"success",
+            "message"=>"Berhasil Menyimpan Data Kejuruan"
+            ]);
         return redirect()->route('kejuruan.index');
     }
 
@@ -87,6 +92,10 @@ class KejuruanController extends Controller
         $kejuruan->nama_kejuruan = $request->nama_kejuruan;
         $kejuruan->keterangan = $request->keterangan;
         $kejuruan->save();
+        Session::flash("flash_notification",[
+            "level"=>"warning",
+            "message"=>"Berhasil Merubah Data Kejuruan"
+            ]);
         return redirect()->route('kejuruan.index');
     }
 
@@ -102,6 +111,17 @@ class KejuruanController extends Controller
 
 
         TbMKejuruan::destroy($id);
+        Session::flash("flash_notification",[
+            "level"=>"danger",
+            "message"=>"Berhasil Menghapus Data Kejuruan"
+            ]);
         return redirect()->route('kejuruan.index');
+    }
+
+    public function search(Request $request)
+    {
+        $carik = $request->get('search');
+        $kejuruan = TbMKejuruan::where('kd_kejuruan','LIKE','%'.$carik.'%')->paginate(10);
+        return view('kejuruan.index', compact('kejuruan'));
     }
 }

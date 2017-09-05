@@ -14,11 +14,6 @@
                     <form action="" method="post" >
                     {{ csrf_field() }}
                       <div class="form-group">
-                          <label class="col-sm-2 control-label">Kode :</label>
-                              <div class="col-sm-3">
-                                  <input type="text" class="form-control" required="" name="kd_kejuruan">
-                              </div>
-
                           <label class="col-sm-2 control-label">Nama :</label> 
                               <div class="col-sm-3">
                                   <select name="nama_kejuruan" class="form-control">
@@ -27,8 +22,19 @@
                               @endforeach
                               </select>
                               </div>
-                   
-                      <a class="btn btn-primary" href="">Cari</a>
+                     </form>
+                      <div class="col-md-4">
+                      <label class="col-sm-2 control-label">Kode </label> 
+                        {!! Form::open(['method'=>'GET','url'=>'carik','role'=>'search']) !!}
+                        <div class="input-group custom-search-form">
+                          <input type="text" class="form-control" name="search" placeholder="search">
+                          <span class="input-group-btn">
+                              <button class="btn btn-success" type="submit"><i class="fa fa-search"></i> Cari</button>
+                          </span>
+                        </div>
+                        {!! Form::close() !!}
+                      </div>
+  
                       </div>
                       <br>
                       <br>
@@ -40,7 +46,7 @@
                       <td>      
                       <a class="btn btn-danger" href="">Delete</a>
                       </td>                  
-                      </form>
+                     
 
           <br>
           <table class="table">

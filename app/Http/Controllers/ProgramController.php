@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TbMProgram;
 use App\TbMKejuruan;
+use Session;
 class ProgramController extends Controller
 {
     /**
@@ -50,6 +51,10 @@ class ProgramController extends Controller
         $program->jumlah_paket = $request->jumlah_paket;
         $program->lama_pelatihan = $request->lama_pelatihan;
         $program->save();
+        Session::flash("flash_notification",[
+            "level"=>"success",
+            "message"=>"Berhasil Menyimpan Data Sub Kejuruan"
+            ]);
         return redirect()->route('program.index');
     }
 
@@ -95,6 +100,10 @@ class ProgramController extends Controller
         $program->jumlah_paket = $request->jumlah_paket;
         $program->lama_pelatihan = $request->lama_pelatihan;
         $program->save();
+        Session::flash("flash_notification",[
+            "level"=>"warning",
+            "message"=>"Berhasil Merubah Data Program"
+            ]);
         return redirect()->route('program.index');
     }
 
@@ -108,6 +117,17 @@ class ProgramController extends Controller
     {
         //
         TbMProgram::destroy($id);
+        Session::flash("flash_notification",[
+            "level"=>"danger",
+            "message"=>"Berhasil Menghapus Data Program"
+            ]);
         return redirect()->route('program.index');
+    }
+
+        public function search(Request $request)
+    {
+        $carip = $request->get('search');
+        $program = TbMProgram::where('kd_program','LIKE','%'.$carip.'%')->paginate(10);
+        return view('program.index', compact('program'));
     }
 }

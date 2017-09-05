@@ -21,3 +21,7 @@ Route::resource('subkejuruan','SubKejuruanController');
 Route::resource('program','ProgramController');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('carik','KejuruanController@search');
+Route::get('caris','SubKejuruanController@search');
+Route::get('carip','ProgramController@search');
