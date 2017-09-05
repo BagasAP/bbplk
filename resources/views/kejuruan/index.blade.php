@@ -49,16 +49,17 @@
                      
 
           <br>
-          <table class="table">
+          <table class="table table-bordered">
         <thead>
+       
             <tr>
-                <th>Select </th>
-                <th>Kode Kejuruan</th>
-                <th>Nama Kejuruan</th>
-                <th>Keterangan</th>
-                <th colspan="2">Opsi</th>
-
+                <th bgcolor="info">Select </th>
+                <th bgcolor="info">Kode Kejuruan</th>
+                <th bgcolor="info">Nama Kejuruan</th>
+                <th bgcolor="info">Keterangan</th>
+                <th colspan="2" bgcolor="info">Opsi</th>
             </tr>
+            
         </thead>
         <tbody>
         @foreach($kejuruan as $data)
@@ -81,7 +82,7 @@
         </tbody>
        @endforeach
     </table>    
-    
+
           </div>
           </div>
           </div>

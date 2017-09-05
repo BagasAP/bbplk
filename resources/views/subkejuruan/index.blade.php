@@ -53,12 +53,12 @@
           <table class="table">
         <thead>
             <tr>
-                <th>Select </th>
-                <th>Kode Sub Kejuruan</th>
-                <th>Nama Sub</th>
-                <th>Nama Kejuruan</th>
-                <th>Keterangan</th>
-                <th colspan="2">Opsi</th>
+                <th bgcolor="info">Select </th>
+                <th bgcolor="info">Kode Sub Kejuruan</th>
+                <th bgcolor="info">Nama Sub</th>
+                <th bgcolor="info">Nama Kejuruan</th>
+                <th bgcolor="info">Keterangan</th>
+                <th colspan="2" bgcolor="info">Opsi</th>
             </tr>
         </thead>
         <tbody>

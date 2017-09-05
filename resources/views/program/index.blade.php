@@ -53,14 +53,14 @@
           <table class="table">
         <thead>
             <tr>
-                <th>Select </th>
-                <th>Kode program</th>
-                <th>Nama Program</th>
-                <th>Nama Sub Kejuruan</th>
-                <th>Nama Kejuruan</th>
-                <th>Jumlah Paket</th>
-                <th>Lama Latihan</th>
-                <th colspan="2">Opsi</th>
+                <th bgcolor="info">Select </th>
+                <th bgcolor="info">Kode program</th>
+                <th bgcolor="info">Nama Program</th>
+                <th bgcolor="info">Nama Sub Kejuruan</th>
+                <th bgcolor="info">Nama Kejuruan</th>
+                <th bgcolor="info">Jumlah Paket</th>
+                <th bgcolor="info">Lama Latihan</th>
+                <th colspan="2" bgcolor="info">Opsi</th>
             </tr>
         </thead>
         <tbody>
