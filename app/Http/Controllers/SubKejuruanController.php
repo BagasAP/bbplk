@@ -17,7 +17,7 @@ class SubKejuruanController extends Controller
     {
         //
         $kejuruan = TbMKejuruan::all();
-         $subkejuruan= TbMSubKejuruan::with('TbMKejuruan')->get();
+         $subkejuruan= TbMSubKejuruan::all();
         return view('subkejuruan.index', compact('subkejuruan','kejuruan'));
     }
 
@@ -78,8 +78,9 @@ class SubKejuruanController extends Controller
     public function edit($id)
     {
         //
+        $kejuruan = TbMKejuruan::all();
         $subkejuruan = TbMSubKejuruan::findOrFail($id);
-        return view('subkejuruan.edit')->with(compact('subkejuruan'));
+        return view('subkejuruan.edit')->with(compact('subkejuruan','kejuruan'));
     }
 
     /**
@@ -111,10 +112,11 @@ class SubKejuruanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
-        TbMSubKejuruan::destroy($id);
+        $ids = $request->ids;
+        TbMSubKejuruan::destroy($ids);
         Session::flash("flash_notification",[
             "level"=>"danger",
             "message"=>"Berhasil Menghapus Data Sub Kejuruan"

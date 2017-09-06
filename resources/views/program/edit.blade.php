@@ -42,13 +42,13 @@
                         <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Jumlah Paket</label>
                               <div class="col-sm-4">
-                                  <input name="jumlah_paket" type="number" class="form-control" required value="{{$program->jumlah_paket}}" />
+                                  <input name="jumlah_paket" type="number" class="form-control" value="{{$program->jumlah_paket}}" />
                               </div>
                         </div>
                         <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Lama Pelatihan</label>
                               <div class="col-sm-4">
-                                  <input name="lama_pelatihan" type="number" class="form-control" required value="{{$program->lama_pelatihan}}" />
+                                  <input name="lama_pelatihan" type="number" class="form-control" value="{{$program->lama_pelatihan}}" />
                               </div>
                         </div>
                         <div class="form-group" style="margin-bottom: 20px;">

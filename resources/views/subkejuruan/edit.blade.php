@@ -30,7 +30,11 @@
                         <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nama Kejuruan</label>
                               <div class="col-sm-4">
-                                  <input name="kd_kejuruan" type="text" class="form-control" required  value="{{$subkejuruan->kd_kejuruan}}" />
+                                   <select name="kd_kejuruan" class="form-control">
+                              @foreach($kejuruan as $data)
+                                <option value="{{$data->kd_kejuruan}}" selected="">{{$data->nama_kejuruan}}</option>
+                              @endforeach
+                              </select>
                               </div>
                         </div>
                         <div class="form-group">

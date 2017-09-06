@@ -50,13 +50,13 @@
                         <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Jumlah Paket</label>
                               <div class="col-sm-4">
-                                  <input name="jumlah_paket" type="number" class="form-control" required  />
+                                  <input name="jumlah_paket" type="number" class="form-control"   />
                               </div>
                         </div>
                         <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Lama Pelatihan</label>
                               <div class="col-sm-4">
-                                  <input name="lama_pelatihan" type="number" class="form-control" required  />
+                                  <input name="lama_pelatihan" type="number" class="form-control"  />
                               </div>
                         </div>
                         <div class="form-group" style="margin-bottom: 20px;">

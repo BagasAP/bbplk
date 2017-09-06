@@ -75,7 +75,7 @@ class KejuruanController extends Controller
     public function edit($id)
     {
         //
-
+       
         $kejuruan = TbMKejuruan::findOrFail($id);
         return view('kejuruan.edit')->with(compact('kejuruan'));
     }
@@ -108,16 +108,18 @@ class KejuruanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        $ids = $request->ids;
 
-
-        TbMKejuruan::destroy($id);
+        TbMKejuruan::destroy($ids);
+        
         Session::flash("flash_notification",[
             "level"=>"danger",
             "message"=>"Berhasil Menghapus Data Kejuruan"
             ]);
+        
         return redirect()->route('kejuruan.index');
     }
 
@@ -127,4 +129,5 @@ class KejuruanController extends Controller
         $kejuruan = TbMKejuruan::where('kd_kejuruan','LIKE','%'.$carik.'%')->paginate(10);
         return view('kejuruan.index', compact('kejuruan'));
     }
+
 }

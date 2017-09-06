@@ -118,10 +118,11 @@ class ProgramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
-        TbMProgram::destroy($id);
+        $ids = $request->ids;
+        TbMProgram::destroy($ids);
         Session::flash("flash_notification",[
             "level"=>"danger",
             "message"=>"Berhasil Menghapus Data Program"

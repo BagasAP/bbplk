@@ -8,6 +8,7 @@ class TbMKejuruan extends Model
 {
     //
      protected $table = 'tb_m_kejuruans';
+     
     
     public function TbMSubKejuruan()
 	{

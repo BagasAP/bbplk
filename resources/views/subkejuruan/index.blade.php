@@ -44,9 +44,9 @@
                       <td>
                       <a class="btn btn-primary" href="subkejuruan/create">Create</a>
                       <td>
-                      <a class="btn btn-warning" href="subkejuruan/edit">Edit</a>
+                     <a class="btn btn-warning" href="" onclick="on_edit()">Edit </a>
                       <td>
-                      <a class="btn btn-danger" href="">Delete</a>
+                      <a class="btn btn-danger"  href="javascript:void(0)" onclick="on_delete()">Delete</a>
                       </td>
 
           <br>
@@ -58,27 +58,18 @@
                 <th bgcolor="info">Nama Sub</th>
                 <th bgcolor="info">Nama Kejuruan</th>
                 <th bgcolor="info">Keterangan</th>
-                <th colspan="2" bgcolor="info">Opsi</th>
             </tr>
         </thead>
         <tbody>
         @foreach($subkejuruan as $data)
             <tr>
-                <td><input type="checkbox" name="id" class="pilih"><br/></td>
+                <td><input type="checkbox" name="check[{{$data->id}}]" value="{{$data->id}}" 
+              onclick="addId(this)"></td>
             <td>{{$data->kd_sub_kejuruan}}</td>
             <td>{{$data->nama_sub_kejuruan}}</td>
             <td>{{$data->kd_kejuruan}}</td>
             <td>{{$data->keterangan}}</td>
-            <td>
-                      <a class="btn btn-warning" href="subkejuruan/{{$data->id}}/edit">Edit</a>
-                      <td>
-                      <form action="{{route('subkejuruan.destroy', $data->id )}}" method="post">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" >
-                        <input class="btn btn-danger" type="submit" value="Delete" >
-                        {{csrf_field()}}
-                    </form>
-                      </td>
+          
             </tr>
         </tbody>
        @endforeach
@@ -87,4 +78,80 @@
           </div>
           </div>
           </div>
+<script type="text/javascript">
+var ids = [];
+
+function addId(obj) {
+  //alert("Kode: "+ obj.value + '; ' + (obj.checked? 'terpilih' : 'tidak dipilih'));
+  console.log(obj);
+
+  //checkbox terpilih..
+  if(obj.checked) {
+    ids.push(obj.value);
+  } else {
+    //checkbox tidak dipilih
+    var index = ids.indexOf(obj.value);
+    ids.splice(index, 1);
+  }
+}
+
+function on_delete()
+{
+  if(ids.length == 0) {
+    alert("silahkan pilih terlebih dahulu datanya !");
+  } else {
+    var konfirmasi = confirm("Apakan anda yakin akan menghapus ?");
+    if( konfirmasi == true ) {
+        //alert('Eksekusi delete dilakukan..');
+        $.ajax({
+            url: "subkejuruan/destroy",
+            type: 'DELETE',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            dataType: 'json',
+            data: {"ids": ids},
+            success: function(result) {
+              ///
+            }
+        });
+        setTimeout(function(){
+          window.location = "/subkejuruan";  
+        }, 1000);
+        
+    } else {
+        alert('Eksekusi delete dibatalkan..');
+    }
+  }
+  console.log("data terpilih: " + ids);
+}
+
+function on_edit()
+{
+  if(ids.length == 0) {
+    alert("silahkan pilih terlebih dahulu datanya !");
+  } else if (ids.length > 1 ){
+     alert("silahkan pilih salah satu datanya !");
+  }else {
+    var konfirmasi = confirm("Apakan anda yakin akan merubah data ?");
+    if( konfirmasi == true ) {
+        //alert('Eksekusi delete dilakukan..');
+        $.ajax({
+            url: "subkejuruan",
+            type: 'post',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            dataType: 'json',
+            data: {"ids": ids},
+            success: function(result) {
+              
+            }
+        });
+        
+        
+    } else {
+        alert('Eksekusi rubah data dibatalkan..');
+    }
+  }
+  console.log("data terpilih: " + ids);
+}
+
+</script>
 @endsection
