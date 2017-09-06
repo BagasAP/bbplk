@@ -9,7 +9,7 @@ class TbMKejuruan extends Model
     //
      protected $table = 'tb_m_kejuruans';
     
-    public function subkejuruan()
+    public function TbMSubKejuruan()
 	{
 		return $this->hasMany('App\TbMSubKejuruan', 'kd_kejuruan');
 	}

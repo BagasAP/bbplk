@@ -18,6 +18,7 @@
                               <label class="col-sm-2 col-sm-2 control-label">Kode Kejuruan</label>
                               <div class="col-sm-4">
                                   <input name="kd_kejuruan" type="text" class="form-control" required  />
+                                   {!! $errors->first('kd_kejuruan', '<p class="help-block">Data Sudah Ada</p>') !!}
                               </div>
                         </div>
                         <div class="form-group">

@@ -16,8 +16,8 @@ class SubKejuruanController extends Controller
     public function index()
     {
         //
-         $subkejuruan= TbMSubKejuruan::all();
-         $kejuruan = TbMKejuruan::all();
+        $kejuruan = TbMKejuruan::all();
+         $subkejuruan= TbMSubKejuruan::with('TbMKejuruan')->get();
         return view('subkejuruan.index', compact('subkejuruan','kejuruan'));
     }
 
@@ -43,6 +43,8 @@ class SubKejuruanController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'kd_sub_kejuruan'=>"required|unique:tb_m_sub_kejuruans,kd_sub_kejuruan"]);
         $subkejuruan = new TbMSubKejuruan();
         $subkejuruan->kd_sub_kejuruan = $request->kd_sub_kejuruan;
         $subkejuruan->kd_kejuruan = $request->kd_kejuruan;

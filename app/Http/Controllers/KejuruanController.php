@@ -40,6 +40,9 @@ class KejuruanController extends Controller
     public function store(Request $request)
     {
         //
+
+        $this->validate($request,[
+            'kd_kejuruan'=>"required|unique:tb_m_kejuruans,kd_kejuruan"]);
         $kejuruan = new TbMKejuruan();
         $kejuruan->kd_kejuruan = $request->kd_kejuruan;
         $kejuruan->nama_kejuruan = $request->nama_kejuruan;

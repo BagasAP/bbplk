@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TbMProgram;
 use App\TbMKejuruan;
+use App\TbMSubKejuruan;
 use Session;
 class ProgramController extends Controller
 {
@@ -18,7 +19,8 @@ class ProgramController extends Controller
         //
         $program= TbMProgram::all();
         $kejuruan= TbMKejuruan::all();
-        return view('program.index', compact('program','kejuruan'));
+        $subkejuruan = TbMSubKejuruan::all();
+        return view('program.index', compact('program','kejuruan','subkejuruan'));
     }
 
     /**
@@ -31,7 +33,8 @@ class ProgramController extends Controller
         //
         $program= TbMProgram::all();
         $kejuruan= TbMKejuruan::all();
-        return view('program.create', compact('program','kejuruan'));
+        $subkejuruan= TbMSubKejuruan::all();
+        return view('program.create', compact('program','kejuruan','subkejuruan'));
     }
 
     /**
@@ -43,6 +46,8 @@ class ProgramController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'kd_program'=>"required|unique:tb_m_programs,kd_program"]);
         $program = new TbMProgram();
         $program->kd_program = $request->kd_program;
         $program->nama_program = $request->nama_program;

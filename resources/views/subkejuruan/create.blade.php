@@ -18,6 +18,7 @@
                               <label class="col-sm-2 col-sm-2 control-label">Kode Sub Kejuruan</label>
                               <div class="col-sm-4">
                                   <input name="kd_sub_kejuruan" type="text" class="form-control" required  />
+                                  {!! $errors->first('kd_sub_kejuruan', '<p class="help-block">Data Sudah Ada</p>') !!}
                               </div>
                         </div>
                         <div class="form-group">
@@ -29,7 +30,11 @@
                         <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Kejuruan</label>
                               <div class="col-sm-4">
-                                 <input name="kd_kejuruan" type="text" class="form-control" required  />
+                              <select name="kd_kejuruan" class="form-control">
+                              @foreach($kejuruan as $data)
+                                <option value="{{$data->kd_kejuruan}}">{{$data->nama_kejuruan}}</option>
+                              @endforeach
+                              </select>
                               </div>
                         </div>
                         <div class="form-group">

@@ -18,6 +18,7 @@
                               <label class="col-sm-2 col-sm-2 control-label">Kode Program</label>
                               <div class="col-sm-4">
                                   <input name="kd_program" type="text" class="form-control" required  />
+                                  {!! $errors->first('kd_program', '<p class="help-block">Data Sudah Ada</p>') !!}
                               </div>
                         </div>
                         <div class="form-group">
@@ -29,13 +30,21 @@
                         <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nama Sub Kejuruan</label>
                               <div class="col-sm-4">
-                                  <input name="kd_sub_kejuruan" type="text" class="form-control" required  />
+                                  <select name="kd_sub_kejuruan" class="form-control">
+                                  @foreach($subkejuruan as $data)
+                                  <option value="{{$data->kd_sub_kejuruan}}">{{$data->nama_sub_kejuruan}}</option>
+                                  @endforeach
+                              </select>
                               </div>
                         </div>
                         <div class="form-group">
                               <label class="col-sm-2 col-sm-2 control-label">Nama Kejuruan</label>
                               <div class="col-sm-4">
-                                  <input name="kd_kejuruan" type="text" class="form-control" required  />
+                                  <select name="kd_kejuruan" class="form-control">
+                                  @foreach($kejuruan as $data)
+                                  <option value="{{$data->kd_kejuruan}}">{{$data->nama_kejuruan}}</option>
+                                  @endforeach
+                              </select>
                               </div>
                         </div>
                         <div class="form-group">
