@@ -127,7 +127,7 @@ class SubKejuruanController extends Controller
         public function search(Request $request)
     {
         $caris = $request->get('search');
-        $subkejuruan = TbMSubKejuruan::where('kd_sub_kejuruan','LIKE','%'.$caris.'%')->paginate(10);
+        $subkejuruan = TbMSubKejuruan::where('nama_sub_kejuruan','LIKE','%'.$caris.'%')->paginate(10);
         return view('subkejuruan.index', compact('subkejuruan'));
     }
 }

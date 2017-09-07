@@ -8,7 +8,10 @@ class TbMKejuruan extends Model
 {
     //
      protected $table = 'tb_m_kejuruans';
-     protected $fillable = ['kd_kejuruan,nama_kejuruan','keterangan'];
+    protected $fillable =  ['kd_kejuruan','nama_kejuruan','keterangan'];
+    protected $visible =  ['kd_kejuruan','nama_kejuruan','keterangan'];
+    public $timestamps = true;
+   
      
     
     public function TbMSubKejuruan()

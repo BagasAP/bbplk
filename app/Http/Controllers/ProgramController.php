@@ -133,7 +133,7 @@ class ProgramController extends Controller
         public function search(Request $request)
     {
         $carip = $request->get('search');
-        $program = TbMProgram::where('kd_program','LIKE','%'.$carip.'%')->paginate(10);
+        $program = TbMProgram::where('nama_program','LIKE','%'.$carip.'%')->paginate(10);
         return view('program.index', compact('program'));
     }
 }

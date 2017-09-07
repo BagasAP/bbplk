@@ -126,8 +126,9 @@ class KejuruanController extends Controller
     public function search(Request $request)
     {
         $carik = $request->get('search');
-        $kejuruan = TbMKejuruan::where('kd_kejuruan','LIKE','%'.$carik.'%')->paginate(10);
+        $kejuruan = TbMKejuruan::where('nama_kejuruan','LIKE','%'.$carik.'%')->paginate(10);
         return view('kejuruan.index', compact('kejuruan'));
     }
+
 
 }

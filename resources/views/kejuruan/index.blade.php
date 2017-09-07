@@ -7,29 +7,29 @@
         <header class="panel-heading"><b>Data Kejuruan</b></header>
           <div class="panel-body">
             <div class="form-horizontal">
-              <form action="" method="post" >
-                {{ csrf_field() }}
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Nama :</label> 
-                    <div class="col-sm-3">
-                      <select name="nama_kejuruan" class="form-control">
-                        @foreach($kejuruan as $data)
-                          <option value="{{$data->id}}">{{$data->nama_kejuruan}}</option>
-                        @endforeach
-                      </select>
-                    </div>
-                 </form>    
                   <div class="col-md-4">
-                    <label class="col-sm-2 control-label">Kode </label> 
+                    <label class="col-sm-2 control-label" for="nama_kejuruan">Nama </label> 
                       {!! Form::open(['method'=>'GET','url'=>'carik','role'=>'search']) !!}
                       <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" name="search" placeholder="search" >
+                        <input type="text" class="form-control" name="search" id="nama_kejuruan" placeholder="search" >
                           <span class="input-group-btn">
                             <button class="btn btn-success" type="submit"><i class="fa fa-search"></i> Cari</button>
                           </span>
                       </div>
                       {!! Form::close() !!}
                   </div>
+                <form action="" method="post">
+                {{ csrf_field() }}
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Kode :</label> 
+                    <div class="col-sm-3">
+                      <select name="nama_kejuruan" class="form-control">
+                        @foreach($kejuruan as $data)
+                          <option value="{{$data->id}}">{{$data->kd_kejuruan}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                 </form>   
                 </div>
                 <br><br>
 
@@ -85,7 +85,7 @@ function addId(obj) {
 function on_delete()
 {
   if(ids.length == 0) {
-    alert("silahkan pilih terlebih dahulu datanya !");
+    alert("silahkan pilih data yang ingin dihapus !");
   } else {
     var konfirmasi = confirm("Apakan anda yakin akan menghapus ?");
     if( konfirmasi == true ) {
@@ -108,13 +108,12 @@ function on_delete()
         alert('Eksekusi delete data dibatalkan..');
     }
   }
-  console.log("data terpilih: " + ids);
 }
 
 function on_edit()
 {
   if(ids.length == 0) {
-    alert("silahkan pilih terlebih dahulu datanya !");
+    alert("silahkan pilih data yang ingin di ubah !");
   } else if (ids.length > 1 ){
      alert("silahkan pilih salah satu datanya !");
   }else {
@@ -132,14 +131,14 @@ function on_edit()
             }
         });
         setTimeout(function(){
-          window.location = "/kejuruan/{{$data->id}}/edit";  
+          window.location = "/kejuruan/"+ids+"/edit";  
         }, 1000);
         
     } else {
         alert('Eksekusi rubah data dibatalkan..');
     }
   }
-  console.log("data terpilih: " + ids);
 }
 </script>
+
 @endsection
