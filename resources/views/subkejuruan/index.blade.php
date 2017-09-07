@@ -1,83 +1,71 @@
 @extends('layouts.app')
 @section('content')
-
-
 <div class="container">
-<div class="row">
+  <div class="row">
     <center><h1>Sub Kejuruan</h1></center>
-     <div class="panel panel-primary">
-            <header class="panel-heading">
-                <b>Data Sub Kejuruan</b>
-                </header>
-                    <div class="panel-body">
-                    <div class="form-horizontal">
-                    <form action="" method="post" >
-                    {{ csrf_field() }}
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label">Nama :</label>
-                              <div class="col-sm-3">
-                                  <select name="nama_kejuruan" class="form-control">
-                              @foreach($subkejuruan as $data)
-                                <option value="{{$data->id}}">{{$data->nama_sub_kejuruan}}</option>
-                              @endforeach
-                              </select>
-                              </div>
-                            </form>
-
-                              <div class="col-md-4">
-                                <label class="col-sm-2 control-label">Kode </label> 
-                                  {!! Form::open(['method'=>'GET','url'=>'caris','role'=>'search']) !!}
-                                  <div class="input-group custom-search-form">
-                                  <input type="text" class="form-control" name="search" placeholder="search">
-                                    <span class="input-group-btn">
-                                        <span class="input-group-btn">
-                                        <button class="btn btn-success" type="submit"><i class="fa fa-search"></i> Cari</button>
+      <div class="panel panel-primary">
+        <header class="panel-heading"><b>Data Sub Kejuruan</b></header>
+        <div class="panel-body">
+          <div class="form-horizontal">
+            <form action="" method="post" >
+              {{ csrf_field() }}
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Nama :</label>
+                  <div class="col-sm-3">
+                    <select name="nama_kejuruan" class="form-control">
+                      @foreach($subkejuruan as $data)
+                      <option value="{{$data->id}}">{{$data->nama_sub_kejuruan}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="col-sm-2 control-label">Kode </label> 
+                      {!! Form::open(['method'=>'GET','url'=>'caris','role'=>'search']) !!}
+                      <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" name="search" placeholder="search">
+                          <span class="input-group-btn">
+                            <span class="input-group-btn">
+                              <button class="btn btn-success" type="submit"><i class="fa fa-search"></i> Cari</button>
                             </span>
                           </span>
-                        </div>
-                        {!! Form::close() !!}
                       </div>
-                      </div>
-                      <br>
-                      <br>
-
-                      <td>
-                      <a class="btn btn-primary" href="subkejuruan/create">Create</a>
-                      <td>
-                     <a class="btn btn-warning" href="" onclick="on_edit()">Edit </a>
-                      <td>
-                      <a class="btn btn-danger"  href="javascript:void(0)" onclick="on_delete()">Delete</a>
-                      </td>
-
-          <br>
-          <table class="table">
-        <thead>
-            <tr>
-                <th bgcolor="info">Select </th>
-                <th bgcolor="info">Kode Sub Kejuruan</th>
-                <th bgcolor="info">Nama Sub</th>
-                <th bgcolor="info">Nama Kejuruan</th>
-                <th bgcolor="info">Keterangan</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach($subkejuruan as $data)
-            <tr>
-                <td><input type="checkbox" name="check[{{$data->id}}]" value="{{$data->id}}" 
-              onclick="addId(this)"></td>
-            <td>{{$data->kd_sub_kejuruan}}</td>
-            <td>{{$data->nama_sub_kejuruan}}</td>
-            <td>{{$data->kd_kejuruan}}</td>
-            <td>{{$data->keterangan}}</td>
-          
-            </tr>
-        </tbody>
-       @endforeach
-    </table>    
-
+                      {!! Form::close() !!}
+                  </div>
+                </div>
+                <br><br>
+                <td><a class="btn btn-primary" href="subkejuruan/create">Create</a></td>
+                <td><a class="btn btn-warning" href="javascript:void(0)" onclick="on_edit()">Edit</a></td>
+                <td><a class="btn btn-danger"  href="javascript:void(0)" onclick="on_delete()">Delete</a></td>
+            </form>
+            <br>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th bgcolor="info">Select </th>
+                  <th bgcolor="info">Kode Sub Kejuruan</th>
+                  <th bgcolor="info">Nama Sub</th>
+                  <th bgcolor="info">Nama Kejuruan</th>
+                  <th bgcolor="info">Keterangan</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($subkejuruan as $data)
+                <tr>
+                  <td><input type="checkbox" name="check[{{$data->id}}]" value="{{$data->id}}" 
+                  onclick="addId(this)"></td>
+                  <td>{{$data->kd_sub_kejuruan}}</td>
+                  <td>{{$data->nama_sub_kejuruan}}</td>
+                  <td>{{$data->kd_kejuruan}}</td>
+                  <td>{{$data->keterangan}}</td>
+                </tr>
+                @endforeach
+              </tbody>       
+            </table>    
           </div>
-          </div>
-          </div>
+        </div>
+      </div>
+  </div>
+</div>
 <script type="text/javascript">
 var ids = [];
 
@@ -144,7 +132,9 @@ function on_edit()
               
             }
         });
-        
+        setTimeout(function(){
+          window.location = "/subkejuruan/{{$data->id}}/edit";  
+        }, 1000);
         
     } else {
         alert('Eksekusi rubah data dibatalkan..');

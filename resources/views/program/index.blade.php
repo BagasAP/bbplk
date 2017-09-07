@@ -1,58 +1,46 @@
 @extends('layouts.app')
 @section('content')
-
-
 <div class="container">
-<div class="row">
+  <div class="row">
     <center><h1>Program</h1></center>
-     <div class="panel panel-primary">
-            <header class="panel-heading">
-                <b>Data Program</b>
-                </header>
-                    <div class="panel-body">
-                    <div class="form-horizontal">
-                    <form action="" method="post" >
-                    {{ csrf_field() }}
-                      <div class="form-group">
-                          <label class="col-sm-2 control-label">Nama :</label>
-                              <div class="col-sm-3">
-                                  <select name="nama_kejuruan" class="form-control">
-                              @foreach($program as $data)
-                                <option value="{{$data->id}}">{{$data->nama_program}}</option>
-                              @endforeach
-                              </select>
-                              </div>
-                               </form>
-                    <div class="col-md-4">
-                      <label class="col-sm-2 control-label">Kode </label> 
-                        {!! Form::open(['method'=>'GET','url'=>'carip','role'=>'search']) !!}
-                        <div class="input-group custom-search-form">
-                          <input type="text" class="form-control" name="search" placeholder="search">
-                          <span class="input-group-btn">
-                            <span class="input-group-btn">
-                              <button class="btn btn-success" type="submit"><i class="fa fa-search"></i> Cari</button>
-                            </span>
-                          </span>
-                        </div>
-                        {!! Form::close() !!}
-                      </div>
-                      </div>
-                      <br>
-                      <br>
-
-                      <td>
-                      <a class="btn btn-primary" href="program/create">Create</a>
-                      <td>
-                      <a class="btn btn-warning" href="" onclick="on_edit()">Edit </a>
-                      <td>
-                      <a class="btn btn-danger" href="javascript:void(0)" onclick="on_delete()">Delete</a>
-                      </td>
-                     
-
+    <div class="panel panel-primary">
+      <header class="panel-heading"><b>Data Program</b></header>
+      <div class="panel-body">
+        <div class="form-horizontal">
+          <form action="" method="post" >
+            {{ csrf_field() }}
+            <div class="form-group">
+              <label class="col-sm-2 control-label">Nama :</label>
+              <div class="col-sm-3">
+                <select name="nama_kejuruan" class="form-control">
+                  @foreach($program as $data)
+                  <option value="{{$data->id}}">{{$data->nama_program}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="col-sm-2 control-label">Kode </label> 
+                {!! Form::open(['method'=>'GET','url'=>'carip','role'=>'search']) !!}
+                <div class="input-group custom-search-form">
+                  <input type="text" class="form-control" name="search" placeholder="search">
+                    <span class="input-group-btn">
+                      <span class="input-group-btn">
+                        <button class="btn btn-success" type="submit"><i class="fa fa-search"></i> Cari</button>
+                      </span>
+                    </span>
+                </div>
+                {!! Form::close() !!}
+              </div>
+            </div>
+            <br><br>
+            <td><a class="btn btn-primary" href="program/create">Create</a></td>
+            <td><a class="btn btn-warning" href="javascript:void(0)" onclick="on_edit()">Edit</a></td>
+            <td><a class="btn btn-danger" href="javascript:void(0)" onclick="on_delete()">Delete</a></td>
+          </form>
           <br>
           <table class="table">
-        <thead>
-            <tr>
+            <thead>
+              <tr>
                 <th bgcolor="info">Select </th>
                 <th bgcolor="info">Kode program</th>
                 <th bgcolor="info">Nama Program</th>
@@ -60,27 +48,29 @@
                 <th bgcolor="info">Nama Kejuruan</th>
                 <th bgcolor="info">Jumlah Paket</th>
                 <th bgcolor="info">Lama Latihan</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach($program as $data)
-            <tr>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($program as $data)
+              <tr>
                 <td><input type="checkbox" name="check[{{$data->id}}]" value="{{$data->id}}" 
-              onclick="addId(this)"></td>
-            <td>{{$data->kd_program}}</td>
-            <td>{{$data->nama_program}}</td>
-            <td>{{$data->kd_sub_kejuruan}}</td>
-            <td>{{$data->kd_kejuruan}}</td>
-            <td>{{$data->jumlah_paket}}</td>
-            <td>{{$data->lama_pelatihan}}</td>
-          
-            </tr>
-        </tbody>
-       @endforeach
-    </table>    
-          </div>
-          </div>
-          </div>
+                onclick="addId(this)"></td>
+                <td>{{$data->kd_program}}</td>
+                <td>{{$data->nama_program}}</td>
+                <td>{{$data->kd_sub_kejuruan}}</td>
+                <td>{{$data->kd_kejuruan}}</td>
+                <td>{{$data->jumlah_paket}}</td>
+                <td>{{$data->lama_pelatihan}}</td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
           <script type="text/javascript">
 var ids = [];
 
@@ -148,7 +138,9 @@ function on_edit()
             }
         });
         
-        
+        setTimeout(function(){
+          window.location = "/program/{{$data->id}}/edit";  
+        }, 1000);
     } else {
         alert('Eksekusi rubah data dibatalkan..');
     }
